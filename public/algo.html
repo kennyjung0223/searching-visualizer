@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>About Algorithms</title>
+        <link rel="icon" href="search_icon.png"/>
+    	<link rel="stylesheet" href="style.css">
+    </head>
+    <div class="container">
+        <a href="SortingVisualizer"><button>go back</button></a>
+        <h1>Time Complexities of these Algorithms</h1>
+        <p>Searching algorithms are algorithms that search an element in a list of elements (numbers, names, anything, literally). For this searching
+        visualizer, the application searches a key value from a list of numbers. 
+        </p>
+        <b></b>
+        <p>
+            Another thing about time complexities: space DOES NOT affect time complexity. For example, if I had an array [6], then one could say
+            the time complexity is O(1). But n = 1, so the time complexity is also O(n) with that logic. Don't be fooled!
+        </p>
+
+        <h2>Linear Search</h2>
+        <p>Time Complexities</p>
+        <ul>
+            <li>Worst Case: O(n)</li>
+            <li>Average Case: O(n)</li>
+            <li>Best Case: O(1)</li>
+        </ul>
+        <p>
+            Linear search is the simplest searching algorithm. Simply, traverse through an array and compare each element with the key value. If the
+            key value is equal to an element in the array, return the index of the matched element in the array. 
+        </p>
+        <b></b>
+        <p>
+            If the first element in the array is a match to the key value, the time complexity is O(1). It would take us one operation to determine the
+            index location of the match. Otherwise, if the key value is not in the array whatsoever, the time complexity is O(n). Simply, it would take
+            'n' operations to realize the key value is not even in the array. 
+        </p>
+        <b></b>
+        <p>
+            My data structures professor said there is a math proof where the worst case time complexity is always more likely than the best case time 
+            complexity. In particular, for linear search, the average case just ends up being O(n), so there is relatively no difference to the worse 
+            case time complexity. 
+        </p>
+        <h2>Binary Search</h2>
+        <p>Time Complexities</p>
+        <ul>
+            <li>Worst Case: O(log(n))</li>
+            <li>Average Case: O(log(n))</li>
+            <li>Best Case: O(1)</li>
+        </ul>
+        <p>
+            If you know about sorting algorithms, there is a group of sorting algorithms that use "divide and conquer". Similarly, in searching algorithms, 
+            there are searching algorithms that fall under a certain criteria: they must be sorted. Bianry search is one of the searching algorithms which
+            requires the array to already be sorted before searching.
+        </p>
+        <b></b>
+        <p>
+            Initially, find the middle element in the array. Compare the key value with the middle element. If the middle element matches the key value, 
+            return the middle element index. If the middle element is less than the key value, use binary search again in the greater half of the array. 
+            Otherwise, use binary search in the smaller half of the array. Continue until either the matched value is found or not found anywhere.
+        </p>
+        <b></b>
+        <p>
+            If the middle element of the entire array matches with the key value, the time complexity is O(1). Still, even if it isn't, binary search runs
+            incredibly fast, thanks to its cutting in half property. In computer science, taking the log will always have the base 2. Therefore, each time
+            an array is cut in half is mathematically equivalent to taking log(n), where n is the number of elements in the array. Therefore, the worst case
+            and the average case of the time complexities for binary search is O(log(n)).
+        </p>
+        <b></b>
+        <p>
+            Note: There are two ways to implement binary search: iteratively or recursively. Iteratively is preferred as it runs slightly faster and saves
+            more space compared the the recursively programmed binary search.
+        </p>
+        <h2>Jump Search</h2>
+        <p>Time Complexities</p>
+        <ul>
+            <li>Worst Case: O(√n)</li>
+            <li>Average Case: O(√n)</li>
+            <li>Best Case: O(1)</li>
+        </ul>
+        <p>
+            Jump search is another searching algorithm that must be sorted before used. You can implement however way you want. However, the 
+            most efficient way to construct this algorithm is to set the number of steps the algorithm will "jump" is √n, where n is the 
+            number of elements in the array. For instance, in an array of 18 elements, the algorithm will jump 4 elements at a time 
+            (round down the number to the nearest integer). 
+        </p>
+        <b></b>
+        <p>
+            First start by comparing the first element to the key value. If the key value is greater, jump from the first element to the next element, 
+            depending on the steps the algorithm will have to take. Continue comparing until the key value is less than the element. Afterwards,
+            check if the element matches the key value. If not, perform linear search until you find the matched element.
+        </p>
+        <b></b>
+        <p>
+            If the first element in the array matches the key value, the time complexity is O(1). Otherwise, it will √n operations, so the time complexity 
+            is O(√n). Please visualize the algorithm for a better understanding of jump search.
+        </p>
+        <footer>
+            <p>Made with love by Kenny Jung, 2019</p>
+        </footer>
+    </div>
+</html>
