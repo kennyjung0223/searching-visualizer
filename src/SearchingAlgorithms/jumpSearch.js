@@ -12,14 +12,22 @@ function jumpSearch(array, key, animations) {
     while (array[Math.min(step, n) - 1] < key) {
         prev = step;
         step = parseInt(step + Math.sqrt(n));
-        animations.push(prev);
+        console.log(prev);
 
         if (prev >= n) {
+            // recalculate prev since prev was updated previously with step
+            prev = prev - ((n - 1) % parseInt(Math.sqrt(n)))
+            animations.push(prev);
+            animations.push(++prev);
+
             return -1;
         }
+
+        animations.push(prev);
     }
     while (array[prev] < key) {
         prev++;
+        console.log(prev);
         animations.push(prev);
 
         if (prev === Math.min(step, n)) {

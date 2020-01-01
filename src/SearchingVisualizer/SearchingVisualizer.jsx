@@ -4,11 +4,6 @@ import {getLinearSearch} from '../SearchingAlgorithms/linearSearch';
 import {getBinarySearch} from '../SearchingAlgorithms/binarySearch';
 import {getJumpSearch} from '../SearchingAlgorithms/jumpSearch';
 
-// tasks to work on
-// 2). display index after calculated
-// 4). hover disable problem
-// 5). refactor
-
 // constant declared global variables
 const ANIMATION_SPEED_MS = 1000;
 const SIZE = 15;
@@ -17,7 +12,7 @@ const SECONDARY_COLOR = 'red';
 const FOUND_COLOR = '#59D60D';
 const arrayBars = document.getElementsByClassName('array-bar');
 
-// declared global variables
+// flags
 let submitted = false;
 let searched = false;
 
@@ -42,7 +37,6 @@ export default class SearchingVisualizer extends React.Component {
         document.getElementById('input').value = null;
 
         for (let i = 0; i < SIZE; i++) {
-            // array.push(50 + i);
             array.push(randomIntFromInterval(1, 99));
         }
 
@@ -198,7 +192,7 @@ export default class SearchingVisualizer extends React.Component {
                 }, ANIMATION_SPEED_MS);
             }, i * ANIMATION_SPEED_MS);
         }
-        const RESTORE_TIME = parseInt(ANIMATION_SPEED_MS*animations.length/2 + 3000);
+        const RESTORE_TIME = parseInt(ANIMATION_SPEED_MS*animations.length/2 - 1000);
         setTimeout(() => this.restoreButtons(), RESTORE_TIME); 
     }
 
@@ -246,7 +240,7 @@ export default class SearchingVisualizer extends React.Component {
                 <form onSubmit={this.submitHandler}>
                     {header}
                     <p>Enter the key value:</p>
-                    <input id="input" type="text" onChange={this.changeHandler}/>
+                    <input id="input" type="text" onChange={this.changeHandler} autoComplete="off"/>
                     <input type="submit" value="Submit"/>
                 </form>
             </label>

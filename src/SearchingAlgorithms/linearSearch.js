@@ -8,6 +8,7 @@ function linearSearch(array, key, animations) {
 
     for (let i = 0; i < array.length; i++) {
         animations.push(i);
+        console.log(i);
 
         if (array[i] === key) {
             index = i;
