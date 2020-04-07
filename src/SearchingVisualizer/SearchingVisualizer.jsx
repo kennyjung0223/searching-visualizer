@@ -3,10 +3,12 @@ import './SearchingVisualizer.css';
 import {getLinearSearch} from '../SearchingAlgorithms/linearSearch';
 import {getBinarySearch} from '../SearchingAlgorithms/binarySearch';
 import {getJumpSearch} from '../SearchingAlgorithms/jumpSearch';
+import {getExponentialSearch} from '../SearchingAlgorithms/exponentialSearch';
+import {getInterpolationSearch} from '../SearchingAlgorithms/interpolationSearch';
 
 // constant declared global variables
 const ANIMATION_SPEED_MS = 1000;
-const SIZE = 15;
+const SIZE = 18;
 const PRIMARY_COLOR = 'turquoise';
 const SECONDARY_COLOR = 'red';
 const FOUND_COLOR = '#59D60D';
@@ -68,6 +70,14 @@ export default class SearchingVisualizer extends React.Component {
         document.getElementById("jumpSearch").disabled = true;
         buttonStyle = document.getElementById("jumpSearch").style;
         buttonStyle.cursor = "default";
+
+        document.getElementById("exponentialSearch").disabled = true;
+        buttonStyle = document.getElementById("exponentialSearch").style;
+        buttonStyle.cursor = "default";
+
+        document.getElementById("interpolationSearch").disabled = true;
+        buttonStyle = document.getElementById("interpolationSearch").style;
+        buttonStyle.cursor = "default";
     }
 
     restoreButtons() {
@@ -85,6 +95,14 @@ export default class SearchingVisualizer extends React.Component {
 
         document.getElementById("jumpSearch").disabled = false;
         buttonStyle = document.getElementById("jumpSearch").style;
+        buttonStyle.cursor = "pointer";
+
+        document.getElementById("exponentialSearch").disabled = false;
+        buttonStyle = document.getElementById("exponentialSearch").style;
+        buttonStyle.cursor = "pointer";
+
+        document.getElementById("interpolationSearch").disabled = false;
+        buttonStyle = document.getElementById("interpolationSearch").style;
         buttonStyle.cursor = "pointer";
     }
 
@@ -196,6 +214,78 @@ export default class SearchingVisualizer extends React.Component {
         setTimeout(() => this.restoreButtons(), RESTORE_TIME); 
     }
 
+    exponentialSearch() {
+        if (searched) {
+            this.resetToTurquoise();
+        }
+
+        this.disableButtons();
+        searched = true;
+
+        console.log("Key: " + this.state.key);
+
+        const [animations, keyIndex] = getExponentialSearch(this.state.array, this.state.key);
+        console.log("Index: " + keyIndex);
+
+        for (let i = 0; i < animations.length; i++) {
+            const barStyle = arrayBars[animations[i]].style;
+
+            setTimeout(() => {
+                barStyle.backgroundColor = SECONDARY_COLOR;
+                if (i >= 1) {
+                    const resetStyle = arrayBars[animations[i - 1]].style;
+                    resetStyle.backgroundColor = PRIMARY_COLOR;
+                }
+                setTimeout(() => {
+                    if (animations[i] === keyIndex) {
+                        barStyle.backgroundColor = FOUND_COLOR;
+                    }
+                    else {
+                        barStyle.backgroundColor = PRIMARY_COLOR;
+                    }
+                }, ANIMATION_SPEED_MS);
+            }, i * ANIMATION_SPEED_MS);
+        }
+        const RESTORE_TIME = parseInt(ANIMATION_SPEED_MS*animations.length/2 - 1000);
+        setTimeout(() => this.restoreButtons(), RESTORE_TIME); 
+    }
+
+    interpolationSearch() {
+        if (searched) {
+            this.resetToTurquoise();
+        }
+
+        this.disableButtons();
+        searched = true;
+
+        console.log("Key: " + this.state.key);
+
+        const [animations, keyIndex] = getInterpolationSearch(this.state.array, this.state.key);
+        console.log("Index: " + keyIndex);
+
+        for (let i = 0; i < animations.length; i++) {
+            const barStyle = arrayBars[animations[i]].style;
+
+            setTimeout(() => {
+                barStyle.backgroundColor = SECONDARY_COLOR;
+                if (i >= 1) {
+                    const resetStyle = arrayBars[animations[i - 1]].style;
+                    resetStyle.backgroundColor = PRIMARY_COLOR;
+                }
+                setTimeout(() => {
+                    if (animations[i] === keyIndex) {
+                        barStyle.backgroundColor = FOUND_COLOR;
+                    }
+                    else {
+                        barStyle.backgroundColor = PRIMARY_COLOR;
+                    }
+                }, ANIMATION_SPEED_MS);
+            }, i * ANIMATION_SPEED_MS);
+        }
+        const RESTORE_TIME = parseInt(ANIMATION_SPEED_MS*animations.length/2 - 1000);
+        setTimeout(() => this.restoreButtons(), RESTORE_TIME); 
+    }
+
     resetToTurquoise() {
         for (let i = 0; i < this.state.array.length; i++) {
             const barStyles = arrayBars[i].style;
@@ -235,6 +325,8 @@ export default class SearchingVisualizer extends React.Component {
                 <button id="linearSearch" onClick={() => this.linearSearch()}>Linear Search</button>
                 <button id="binarySearch" onClick={() => this.binarySearch()}>Binary Search</button>
                 <button id="jumpSearch" onClick={() => this.jumpSearch()}>Jump Search</button>
+                <button id="exponentialSearch" onClick={() => this.exponentialSearch()}>Exponential Search</button>
+                <button id="interpolationSearch" onClick={() => this.interpolationSearch()}>Interpolation Search</button>
             </div>
             <label id="label">
                 <form onSubmit={this.submitHandler}>
