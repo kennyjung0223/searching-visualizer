@@ -12,7 +12,6 @@ function jumpSearch(array, key, animations) {
     while (array[Math.min(step, n) - 1] < key) {
         prev = step;
         step = parseInt(step + Math.sqrt(n));
-        console.log(prev);
 
         if (prev >= n) {
             // recalculate prev since prev was updated previously with step
@@ -27,7 +26,6 @@ function jumpSearch(array, key, animations) {
     }
     while (array[prev] < key) {
         prev++;
-        console.log(prev);
         animations.push(prev);
 
         if (prev === Math.min(step, n)) {
