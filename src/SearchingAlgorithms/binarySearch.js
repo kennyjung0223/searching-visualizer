@@ -1,13 +1,11 @@
 export function getBinarySearch(array, key) {
     let animations = [];
-    console.log(animations);
     return [animations, binarySearch(array, 0, array.length - 1, key, animations)];
 }
 
 function binarySearch(array, low, high, key, animations) {
     while (low <= high) {
         let mid = parseInt((low + high) / 2);
-        console.log(mid);
         animations.push(mid);
 
         if (array[mid] === key) {
