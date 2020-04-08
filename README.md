@@ -20,8 +20,8 @@ My data structures professor said there is a math proof where the worst case tim
 
 ## Binary Search
 Time Complexities
-* Worst Case: O(n)
-* Average Case: O(n)
+* Worst Case: O(logn)
+* Average Case: O(logn)
 * Best Case: O(1)
 
 If you know about sorting algorithms, there is a group of sorting algorithms that use "divide and conquer". Similarly, in searching algorithms, there are searching algorithms that fall under a certain criteria: they must be sorted. Bianry search is one of the searching algorithms which requires the array to already be sorted before searching.
@@ -43,6 +43,22 @@ Jump search is another searching algorithm that must be sorted before used. You 
 First start by comparing the first element to the key value. If the key value is greater, jump from the first element to the next element, depending on the steps the algorithm will have to take. Continue comparing until the key value is less than the element. Afterwards, check if the element matches the key value. If not, perform linear search until you find the matched element.
 
 If the first element in the array matches the key value, the time complexity is O(1). Otherwise, it will √n operations, so the time complexity is O(√n). Please visualize the algorithm for a better understanding of jump search.
+
+## Exponential Search
+Time Complexities
+* Worst Case: O(log(n))
+* Average Case: O(log(n))
+* Best Case: O(1)
+
+Details coming soon
+
+## Interpolation Search
+Time Complexities
+* Worst Case: O(n)
+* Average Case: O(log(log(n)))
+* Best Case: O(1)
+
+Details coming soon
 
 ## Future adjustments
 * user adjusts array size
